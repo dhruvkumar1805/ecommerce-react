@@ -3,13 +3,13 @@ import all_product from "../../../public/assets/all_product";
 import Item from "../Item/Item";
 
 function Men() {
-  const menProducts = all_product.filter((item) => item.category === "men");
+  const kidsProducts = all_product.filter((item) => item.category === "kid");
 
   return (
     <div>
-      <img src="/assets/banner_mens.png" alt="Men's Banner" />
+      <img src="/assets/banner_kids.png" alt="Men's Banner" />
       <div className="flex flex-wrap justify-center items-center gap-8 mt-10">
-        {menProducts.map((item) => (
+        {kidsProducts.map((item) => (
           <Item
             key={item.id}
             id={item.id}
