@@ -40,9 +40,9 @@ function ItemDetails() {
 
   return (
     <div>
-      <div className="flex items-start justify-center gap-16 my-20">
+      <div className="flex flex-col md:flex-row items-center md:items-start justify-center gap-16 my-20">
         <img className="rounded-lg" src={image} alt={name} />
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col ml-6 md:ml-0 gap-3">
           <h1 className="text-3xl font-semibold max-w-xl">{name}</h1>
           <div className="flex mt-2 space-x-4">
             <div className="text-2xl font-semibold text-orange-500">
@@ -64,7 +64,7 @@ function ItemDetails() {
               {sizes.map((size) => (
                 <div
                   key={size}
-                  className={`border-2 py-4 px-6 rounded-md inline-block ${
+                  className={`border-2 py-2 px-4 md:py-4 md:px-6 rounded-md inline-block ${
                     selectedSize === size
                       ? "bg-gray-200 border-gray-500 font-semibold"
                       : ""
@@ -95,9 +95,9 @@ function ItemDetails() {
           </div>
         </div>
       </div>
-      <div className="mx-64">
-        <h2 className="uppercase font-bold">Description</h2>
-        <p>
+      <div className="md:mx-64 mx-6 md:ml-60">
+        <h2 className="uppercase font-bold text-lg">Description</h2>
+        <p className="mb-4">
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos sed aut
           iste, labore rerum reprehenderit tenetur cupiditate incidunt.
         </p>
@@ -108,7 +108,7 @@ function ItemDetails() {
         <li>Composition - 60%Cotton + 40% Polyester</li>
       </div>
       <div className="flex flex-col justify-center items-center">
-        <h1 className="text-6xl text-center mt-20 uppercase">
+        <h1 className="text-4xl md:text-6xl text-center mt-20 uppercase">
           You may also like
         </h1>
         <hr className="w-[200px] h-1 mt-5 mb-20 bg-slate-950 flex justify-center items-center" />

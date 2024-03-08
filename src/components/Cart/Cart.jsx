@@ -17,13 +17,16 @@ function Cart() {
   return (
     <div>
       <h2 className="text-6xl text-center mt-20 uppercase">Cart</h2>
-      <div className="flex justify-center items-start gap-36">
-        <div>
+      <div className="flex flex-col md:flex-row justify-center md:items-start md:gap-36">
+        <div className="flex flex-col justify-center items-center">
           {cartItems.map((item) => {
             return (
-              <div key={item.id} className="flex justify-center mt-20 gap-4">
+              <div
+                key={item.id}
+                className="flex flex-col md:flex-row justify-center mt-20 gap-4"
+              >
                 <img
-                  className="w-24 rounded-md"
+                  className="md:w-24 rounded-md"
                   src={item.image}
                   alt={item.name}
                 />
@@ -46,7 +49,7 @@ function Cart() {
             );
           })}
         </div>
-        <div>
+        <div className="flex flex-col justify-center mx-20">
           <h2 className="text-4xl text-center mt-20 uppercase">Cart total</h2>
           <div className="flex items-center justify-between mt-6">
             <p className="inline">Subtotal:</p>
@@ -63,7 +66,7 @@ function Cart() {
             <p className="inline">${subtotal}</p>
           </div>
           <button
-            className="mt-6 inline-block select-none font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none w-auto"
+            className="mt-6 mb-20 inline-block select-none font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none w-auto"
             type="button"
           >
             Proceed to checkout
