@@ -1,13 +1,21 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import all_product from "../../../public/assets/all_product";
 import new_collections from "../../../public/assets/new_collections";
 import Item from "../Item/Item";
 import { Link } from "react-router-dom";
+import { CartContext } from "../context/CartContext";
 
 function ItemDetails() {
   const { id } = useParams();
+  const { addToCart } = useContext(CartContext);
   const item = all_product.find((product) => product.id === parseInt(id));
+
+  const handleAddToCart = () => {
+    if (item) {
+      addToCart(item, quantity, selectedSize);
+    }
+  };
   const [selectedSize, setSelectedSize] = useState("XL");
   const [quantity, setQuantity] = useState(1);
 
@@ -15,7 +23,7 @@ function ItemDetails() {
     return <div>Item not found</div>;
   }
 
-  const { name, category, image, new_price, old_price } = item;
+  const { name, image, new_price, old_price } = item;
   const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
 
   const handleSizeSelect = (size) => {
@@ -78,6 +86,7 @@ function ItemDetails() {
           </div>
           <div>
             <button
+              onClick={handleAddToCart}
               className="inline-block select-none font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none w-auto"
               type="button"
             >

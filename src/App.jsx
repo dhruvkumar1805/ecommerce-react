@@ -9,26 +9,31 @@ import Footer from "./components/Footer/Footer";
 import ItemDetails from "./components/ItemDetails/ItemDetails";
 import Error from "./components/Error/Error";
 import ScrollToTop from "./components/ScrollToTop";
+import { CartProvider } from "./components/context/CartContext";
+import Cart from "./components/Cart/Cart";
 
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <ScrollToTop />
-        <Header />
-        <Routes>
-          <Route path="/" element={<Shop />} />
-          <Route path="/men" element={<Men category="men" />} />
-          <Route
-            path="/item/:id"
-            element={<ItemDetails category="details" />}
-          />
-          <Route path="/women" element={<Women category="women" />} />
-          <Route path="/kids" element={<Kids category="kids" />} />
-          <Route path="*" element={<Error />} />
-        </Routes>
-        <Footer />
-      </BrowserRouter>
+      <CartProvider>
+        <BrowserRouter>
+          <ScrollToTop />
+          <Header />
+          <Routes>
+            <Route path="/" element={<Shop />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/men" element={<Men category="men" />} />
+            <Route
+              path="/item/:id"
+              element={<ItemDetails category="details" />}
+            />
+            <Route path="/women" element={<Women category="women" />} />
+            <Route path="/kids" element={<Kids category="kids" />} />
+            <Route path="*" element={<Error />} />
+          </Routes>
+          <Footer />
+        </BrowserRouter>
+      </CartProvider>
     </>
   );
 }

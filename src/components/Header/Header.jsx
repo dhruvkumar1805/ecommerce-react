@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { FiShoppingCart } from "react-icons/fi";
 import { VscAccount } from "react-icons/vsc";
+import { CartContext } from "../context/CartContext";
 
 function Header() {
   const [activeLink, setActiveLink] = useState("Home");
+  const { cartItems } = useContext(CartContext);
 
   const handleLinkClick = (link) => {
     setActiveLink(link);
@@ -69,10 +71,13 @@ function Header() {
         </div>
         <div className="flex space-x-8">
           <Link to="/cart">
-            <FiShoppingCart size="18px" />
+            <FiShoppingCart size="20px" />
+            <div className="w-4 h-4 bg-orange-500 rounded-full relative bottom-7 left-3 text-center text-xs text-white font-semibold">
+              {cartItems.length}
+            </div>
           </Link>
           <Link to="account">
-            <VscAccount size="18px" />
+            <VscAccount size="20px" />
           </Link>
         </div>
       </div>
