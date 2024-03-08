@@ -8,11 +8,13 @@ import Kids from "./components/Kids/Kids";
 import Footer from "./components/Footer/Footer";
 import ItemDetails from "./components/ItemDetails/ItemDetails";
 import Error from "./components/Error/Error";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
     <>
       <BrowserRouter>
+        <ScrollToTop />
         <Header />
         <Routes>
           <Route path="/" element={<Shop />} />
