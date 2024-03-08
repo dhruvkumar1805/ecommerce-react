@@ -1,6 +1,7 @@
 import React from "react";
 import data_product from "../../../public/assets/data";
 import Item from "../Item/Item";
+import { Link } from "react-router-dom";
 
 function Popular() {
   return (
@@ -14,14 +15,16 @@ function Popular() {
       <div className="flex justify-center items-center space-x-6">
         {data_product.map((item, i) => {
           return (
-            <Item
-              key={i}
-              id={item.id}
-              image={item.image}
-              name={item.name}
-              newPrice={item.new_price}
-              oldPrice={item.old_price}
-            />
+            <Link key={item.id} to={`/item/${item.id}`}>
+              <Item
+                key={i}
+                id={item.id}
+                image={item.image}
+                name={item.name}
+                newPrice={item.new_price}
+                oldPrice={item.old_price}
+              />
+            </Link>
           );
         })}
       </div>
