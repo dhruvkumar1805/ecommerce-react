@@ -1,14 +1,16 @@
-import React from "react";
-import all_product from "../../../public/assets/all_product";
+import React, { useContext } from "react";
 import Item from "../Item/Item";
 import { Link } from "react-router-dom";
+import ProductContext from "../context/ProductContext";
 
-function Men() {
-  const kidsProducts = all_product.filter((item) => item.category === "kid");
+function Electronics() {
+  const products = useContext(ProductContext);
+  const kidsProducts = products.filter(
+    (item) => item.category === "electronics"
+  );
 
   return (
     <div>
-      <img src="/assets/banner_kids.png" alt="Men's Banner" />
       <div className="flex flex-wrap justify-center items-center gap-8 mt-10">
         {kidsProducts.map((item) => (
           <Link key={item.id} to={`/item/${item.id}`}>
@@ -16,9 +18,8 @@ function Men() {
               key={item.id}
               id={item.id}
               image={item.image}
-              name={item.name}
-              newPrice={item.new_price}
-              oldPrice={item.old_price}
+              title={item.title}
+              price={item.price}
             />
           </Link>
         ))}
@@ -27,4 +28,4 @@ function Men() {
   );
 }
 
-export default Men;
+export default Electronics;

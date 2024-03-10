@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import all_product from "../../../public/assets/all_product";
 import Item from "../Item/Item";
+import ProductContext from "../context/ProductContext";
 
 function Men() {
-  const menProducts = all_product.filter((item) => item.category === "men");
+  const products = useContext(ProductContext);
+  const menProducts = products.filter(
+    (item) => item.category === "men's clothing"
+  );
 
   return (
     <div>
@@ -13,11 +16,11 @@ function Men() {
         {menProducts.map((item) => (
           <Link key={item.id} to={`/item/${item.id}`}>
             <Item
+              key={item.id}
               id={item.id}
               image={item.image}
-              name={item.name}
-              newPrice={item.new_price}
-              oldPrice={item.old_price}
+              title={item.title}
+              price={item.price}
             />
           </Link>
         ))}

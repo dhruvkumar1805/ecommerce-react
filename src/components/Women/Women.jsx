@@ -1,10 +1,13 @@
-import React from "react";
-import all_product from "../../../public/assets/all_product";
+import React, { useContext } from "react";
 import Item from "../Item/Item";
 import { Link } from "react-router-dom";
+import ProductContext from "../context/ProductContext";
 
 function Men() {
-  const womenProducts = all_product.filter((item) => item.category === "women");
+  const products = useContext(ProductContext);
+  const womenProducts = products.filter(
+    (item) => item.category === "women's clothing"
+  );
 
   return (
     <div>
@@ -16,9 +19,8 @@ function Men() {
               key={item.id}
               id={item.id}
               image={item.image}
-              name={item.name}
-              newPrice={item.new_price}
-              oldPrice={item.old_price}
+              title={item.title}
+              price={item.price}
             />
           </Link>
         ))}

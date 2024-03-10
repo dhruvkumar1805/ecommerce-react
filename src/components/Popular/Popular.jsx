@@ -1,28 +1,32 @@
-import React from "react";
-import data_product from "../../../public/assets/data";
+import React, { useContext } from "react";
 import Item from "../Item/Item";
 import { Link } from "react-router-dom";
+import ProductContext from "../context/ProductContext";
 
 function Popular() {
+  const products = useContext(ProductContext);
+  const popularProducts = products.filter(
+    (item) => item.category === "jewelery"
+  );
+
   return (
     <div>
       <div className="flex flex-col justify-center items-center">
         <h1 className="text-4xl md:text-6xl text-center mt-20 uppercase">
-          Popular in Women
+          Popular in Jewelery
         </h1>
         <hr className="w-[200px] h-0.5 md:h-1 mt-5 mb-20 bg-slate-950 flex justify-center items-center" />
       </div>
-      <div className="flex flex-col md:flex-row justify-center items-center space-y-6 md:space-x-6">
-        {data_product.map((item, i) => {
+      <div className="flex flex-col md:flex-row flex-wrap justify-center items-center gap-6">
+        {popularProducts.map((item, i) => {
           return (
             <Link key={item.id} to={`/item/${item.id}`}>
               <Item
                 key={i}
                 id={item.id}
+                title={item.title}
                 image={item.image}
-                name={item.name}
-                newPrice={item.new_price}
-                oldPrice={item.old_price}
+                price={item.price}
               />
             </Link>
           );

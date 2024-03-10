@@ -3,9 +3,11 @@ import { CartContext } from "../context/CartContext";
 
 function Cart() {
   const { cartItems } = useContext(CartContext);
-  const subtotal = cartItems.reduce((total, item) => {
-    return total + item.new_price * item.quantity;
-  }, 0);
+  const subtotal = cartItems
+    .reduce((total, item) => {
+      return total + item.price * item.quantity;
+    }, 0)
+    .toFixed(2);
   if (cartItems.length === 0) {
     return (
       <div>
@@ -28,21 +30,18 @@ function Cart() {
                 <img
                   className="md:w-24 rounded-md"
                   src={item.image}
-                  alt={item.name}
+                  alt={item.title}
                 />
                 <div className="flex flex-col gap-2">
                   <h3 className="max-w-xs font-semibold text-lg leading-none">
-                    {item.name}
+                    {item.title}
                   </h3>
                   <p>Quantity: {item.quantity}</p>
                   <p>Size: {item.selectedSize}</p>
                 </div>
                 <div className="flex items-center space-x-4">
                   <div className="flex items-start text-2xl font-semibold text-orange-500">
-                    ${item.new_price * item.quantity}
-                  </div>
-                  <div className="flex items-start line-through opacity-50">
-                    ${item.old_price * item.quantity}
+                    ${item.price * item.quantity}
                   </div>
                 </div>
               </div>

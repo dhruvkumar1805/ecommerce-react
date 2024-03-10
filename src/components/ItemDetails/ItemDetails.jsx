@@ -1,16 +1,14 @@
 import React, { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
-import all_product from "../../../public/assets/all_product";
-import new_collections from "../../../public/assets/new_collections";
-import Item from "../Item/Item";
-import { Link } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 import { Toaster, toast } from "sonner";
+import ProductContext from "../context/ProductContext";
 
 function ItemDetails() {
   const { id } = useParams();
   const { addToCart } = useContext(CartContext);
-  const item = all_product.find((product) => product.id === parseInt(id));
+  const products = useContext(ProductContext);
+  const item = products.find((product) => product.id === parseInt(id));
 
   const handleAddToCart = () => {
     if (item) {
@@ -25,7 +23,7 @@ function ItemDetails() {
     return <div>Item not found</div>;
   }
 
-  const { name, image, new_price, old_price } = item;
+  const { title, image, price } = item;
   const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
 
   const handleSizeSelect = (size) => {
@@ -44,15 +42,12 @@ function ItemDetails() {
     <div>
       <Toaster richColors />
       <div className="flex flex-col md:flex-row items-center md:items-start justify-center gap-16 my-20">
-        <img className="rounded-lg" src={image} alt={name} />
+        <img className="h-[400px] rounded-lg" src={image} alt={title} />
         <div className="flex flex-col ml-6 md:ml-0 gap-3">
-          <h1 className="text-3xl font-semibold max-w-xl">{name}</h1>
+          <h1 className="text-3xl font-semibold max-w-xl">{title}</h1>
           <div className="flex mt-2 space-x-4">
             <div className="text-2xl font-semibold text-orange-500">
-              ${new_price}
-            </div>
-            <div className="flex items-center line-through opacity-50">
-              ${old_price}
+              ${price}
             </div>
             <div className="flex items-center text-white">
               <span className="text-xs font-semibold rounded-sm p-1 bg-orange-500">
@@ -100,37 +95,12 @@ function ItemDetails() {
       </div>
       <div className="md:mx-64 mx-6 md:ml-60">
         <h2 className="uppercase font-bold text-lg">Description</h2>
-        <p className="mb-4">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos sed aut
-          iste, labore rerum reprehenderit tenetur cupiditate incidunt.
-        </p>
+        <p className="mb-4">{item.description}</p>
         <li>Height of the Male model - 6'0</li>
         <li>Male Model wearing Size - L</li>
         <li>GSM - 330-350</li>
         <li>Fit - Regular </li>
         <li>Composition - 60%Cotton + 40% Polyester</li>
-      </div>
-      <div className="flex flex-col justify-center items-center">
-        <h1 className="text-4xl md:text-6xl text-center mt-20 uppercase">
-          You may also like
-        </h1>
-        <hr className="w-[200px] h-1 mt-5 mb-20 bg-slate-950 flex justify-center items-center" />
-      </div>
-      <div className="flex justify-center items-center flex-wrap gap-8">
-        {new_collections.map((item, i) => {
-          return (
-            <Link key={item.id} to={`/item/${item.id}`}>
-              <Item
-                key={i}
-                id={item.id}
-                image={item.image}
-                name={item.name}
-                newPrice={item.new_price}
-                oldPrice={item.old_price}
-              />
-            </Link>
-          );
-        })}
       </div>
     </div>
   );

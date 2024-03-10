@@ -82,7 +82,7 @@ function Header() {
             <div>Women</div>
           </Link>
           <Link
-            to="/kids"
+            to="/elec"
             className={`hover:text-blue-600 hover:font-medium transition-all duration-300 ${
               activeLink === "Kids"
                 ? "md:border-b-2 md:border-blue-600 text-blue-600"
@@ -90,7 +90,7 @@ function Header() {
             }`}
             onClick={() => handleLinkClick("Kids")}
           >
-            <div>Kids</div>
+            <div>Electronics</div>
           </Link>
           <Link
             to="/sale"
