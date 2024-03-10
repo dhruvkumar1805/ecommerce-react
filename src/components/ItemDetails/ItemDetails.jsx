@@ -5,6 +5,7 @@ import new_collections from "../../../public/assets/new_collections";
 import Item from "../Item/Item";
 import { Link } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
+import { Toaster, toast } from "sonner";
 
 function ItemDetails() {
   const { id } = useParams();
@@ -14,6 +15,7 @@ function ItemDetails() {
   const handleAddToCart = () => {
     if (item) {
       addToCart(item, quantity, selectedSize);
+      toast.success("Item added to cart!");
     }
   };
   const [selectedSize, setSelectedSize] = useState("XL");
@@ -40,6 +42,7 @@ function ItemDetails() {
 
   return (
     <div>
+      <Toaster richColors />
       <div className="flex flex-col md:flex-row items-center md:items-start justify-center gap-16 my-20">
         <img className="rounded-lg" src={image} alt={name} />
         <div className="flex flex-col ml-6 md:ml-0 gap-3">
