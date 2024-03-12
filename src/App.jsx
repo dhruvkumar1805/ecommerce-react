@@ -12,32 +12,35 @@ import ScrollToTop from "./components/ScrollToTop";
 import { CartProvider } from "./components/context/CartContext";
 import Cart from "./components/Cart/Cart";
 import { ProductProvider } from "./components/context/ProductContext";
+import { DarkModeProvider } from "./components/context/DarkModeContext";
 
 function App() {
   return (
-    <>
-      <ProductProvider>
-        <CartProvider>
-          <BrowserRouter>
-            <ScrollToTop />
-            <Header />
-            <Routes>
-              <Route path="/" element={<Shop />} />
-              <Route path="/cart" element={<Cart />} />
-              <Route path="/men" element={<Men category="men" />} />
-              <Route
-                path="/item/:id"
-                element={<ItemDetails category="details" />}
-              />
-              <Route path="/women" element={<Women category="women" />} />
-              <Route path="/elec" element={<Electronics category="elec" />} />
-              <Route path="*" element={<Error />} />
-            </Routes>
-            <Footer />
-          </BrowserRouter>
-        </CartProvider>
-      </ProductProvider>
-    </>
+    <div className="dark:bg-slate-900 dark:text-white">
+      <DarkModeProvider>
+        <ProductProvider>
+          <CartProvider>
+            <BrowserRouter>
+              <ScrollToTop />
+              <Header />
+              <Routes>
+                <Route path="/" element={<Shop />} />
+                <Route path="/cart" element={<Cart />} />
+                <Route path="/men" element={<Men category="men" />} />
+                <Route
+                  path="/item/:id"
+                  element={<ItemDetails category="details" />}
+                />
+                <Route path="/women" element={<Women category="women" />} />
+                <Route path="/elec" element={<Electronics category="elec" />} />
+                <Route path="*" element={<Error />} />
+              </Routes>
+              <Footer />
+            </BrowserRouter>
+          </CartProvider>
+        </ProductProvider>
+      </DarkModeProvider>
+    </div>
   );
 }
 

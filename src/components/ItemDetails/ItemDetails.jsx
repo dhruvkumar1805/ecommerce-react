@@ -64,7 +64,7 @@ function ItemDetails() {
                   key={size}
                   className={`border-2 py-2 px-4 md:py-4 md:px-6 rounded-md inline-block ${
                     selectedSize === size
-                      ? "bg-gray-200 border-gray-500 font-semibold"
+                      ? "bg-gray-200 border-gray-500 font-semibold dark:text-slate-900"
                       : ""
                   }`}
                   onClick={() => handleSizeSelect(size)}
@@ -85,7 +85,7 @@ function ItemDetails() {
           <div>
             <button
               onClick={handleAddToCart}
-              className="inline-block select-none font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none w-auto"
+              className="mt-6 rounded-md bg-gray-900 dark:bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:dark:bg-indigo-500 hover:shadow-lg hover:shadow-gray-900/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-all duration-300"
               type="button"
             >
               Add to cart

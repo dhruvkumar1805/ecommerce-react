@@ -65,7 +65,7 @@ function Cart() {
             <p className="inline">${subtotal}</p>
           </div>
           <button
-            className="mt-6 mb-20 inline-block select-none font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none w-auto"
+            className="mt-6 rounded-md bg-gray-900 dark:bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:dark:bg-indigo-500 hover:shadow-lg hover:shadow-gray-900/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-all duration-300"
             type="button"
           >
             Proceed to checkout

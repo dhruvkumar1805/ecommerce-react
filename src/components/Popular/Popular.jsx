@@ -12,7 +12,7 @@ function Popular() {
   return (
     <div>
       <div className="flex flex-col justify-center items-center">
-        <h1 className="text-4xl md:text-6xl text-center mt-20 uppercase">
+        <h1 className="text-4xl md:text-6xl text-center mt-20 uppercase dark:text-slate-200">
           Popular in Jewelery
         </h1>
         <hr className="w-[200px] h-0.5 md:h-1 mt-5 mb-20 bg-slate-950 flex justify-center items-center" />

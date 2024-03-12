@@ -4,11 +4,15 @@ import { FiShoppingCart } from "react-icons/fi";
 import { VscAccount } from "react-icons/vsc";
 import { CartContext } from "../context/CartContext";
 import { HiOutlineMenuAlt3, HiOutlineX } from "react-icons/hi";
+import { MdOutlineLightMode } from "react-icons/md";
+import { MdOutlineDarkMode } from "react-icons/md";
+import { DarkModeContext } from "../context/DarkModeContext";
 
 function Header() {
   const [activeLink, setActiveLink] = useState("Home");
   const [isOpen, setIsOpen] = useState(false);
   const { cartItems } = useContext(CartContext);
+  const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
 
   const handleLinkClick = (link) => {
     setActiveLink(link);
@@ -31,11 +35,11 @@ function Header() {
 
   return (
     <>
-      <div className="flex justify-between items-center px-10 py-5 bg-white">
+      <div className="flex justify-between items-center px-10 py-5 bg-white dark:bg-slate-900 dark:text-slate-200">
         <div>
           <Link
             to="/"
-            className="font-bold tracking-wide text-xl"
+            className="font-bold tracking-wide text-xl hover:font-medium transition-all duration-300"
             onClick={() => handleLinkClick("Home")}
           >
             Nova
@@ -44,15 +48,15 @@ function Header() {
         <div
           className={`md:flex text-center md:space-x-10 ${
             isOpen
-              ? "flex flex-col inset-x-0 gap-4 absolute top-16 text-xl bg-white z-10"
+              ? "flex flex-col inset-x-0 gap-4 absolute top-16 text-xl bg-white dark:bg-slate-900 z-10"
               : "hidden"
           } `}
         >
           <Link
             to="/"
-            className={`hover:text-blue-600 hover:font-medium transition-all duration-300 ${
+            className={`hover:text-indigo-600 hover:font-medium transition-all duration-300 ${
               activeLink === "Home"
-                ? "md:border-b-2 md:border-blue-600 text-blue-600"
+                ? "md:border-b-2 md:border-indigo-600 text-indigo-600"
                 : ""
             }`}
             onClick={() => handleLinkClick("Home")}
@@ -61,9 +65,9 @@ function Header() {
           </Link>
           <Link
             to="/men"
-            className={`hover:text-blue-600 hover:font-medium transition-all duration-300 ${
+            className={`hover:text-indigo-600 hover:font-medium transition-all duration-300 ${
               activeLink === "Men"
-                ? "md:border-b-2 md:border-blue-600 text-blue-600"
+                ? "md:border-b-2 md:border-indigo-600 text-indigo-600"
                 : ""
             }`}
             onClick={() => handleLinkClick("Men")}
@@ -72,9 +76,9 @@ function Header() {
           </Link>
           <Link
             to="/women"
-            className={`hover:text-blue-600 hover:font-medium transition-all duration-300 ${
+            className={`hover:text-indigo-600 hover:font-medium transition-all duration-300 ${
               activeLink === "Women"
-                ? "md:border-b-2 md:border-blue-600 text-blue-600"
+                ? "md:border-b-2 md:border-indigo-600 text-indigo-600"
                 : ""
             }`}
             onClick={() => handleLinkClick("Women")}
@@ -83,9 +87,9 @@ function Header() {
           </Link>
           <Link
             to="/elec"
-            className={`hover:text-blue-600 hover:font-medium transition-all duration-300 ${
+            className={`hover:text-indigo-600 hover:font-medium transition-all duration-300 ${
               activeLink === "Kids"
-                ? "md:border-b-2 md:border-blue-600 text-blue-600"
+                ? "md:border-b-2 md:border-indigo-600 text-indigo-600"
                 : ""
             }`}
             onClick={() => handleLinkClick("Kids")}
@@ -94,9 +98,9 @@ function Header() {
           </Link>
           <Link
             to="/sale"
-            className={`hover:text-blue-600 hover:font-medium transition-all duration-300 mb-4 md:mb-0 ${
+            className={`hover:text-indigo-600 hover:font-medium transition-all duration-300 mb-4 md:mb-0 ${
               activeLink === "Sale"
-                ? "md:border-b-2 md:border-blue-600 text-blue-600"
+                ? "md:border-b-2 md:border-indigo-600 text-indigo-600"
                 : ""
             }`}
             onClick={() => handleLinkClick("Sale")}
@@ -104,16 +108,30 @@ function Header() {
             <div>Sale</div>
           </Link>
         </div>
-        <div className="flex justify-center items-center space-x-8">
+        <div className="flex justify-center items-center space-x-6 md:space-x-8">
           <Link to="/cart">
             <FiShoppingCart size="20px" />
-            <div className="w-4 h-4 bg-orange-500 rounded-full absolute top-4 md:right-20 right-32 text-center text-xs text-white font-semibold">
+            <div className="flex justify-center items-center w-5 h-5 bg-slate-700 rounded-full absolute top-4 md:right-32 right-40 text-center text-xs text-white font-semibold">
               {cartItems.length}
             </div>
           </Link>
           <Link to="/account">
             <VscAccount size="20px" />
           </Link>
+          {darkMode ? (
+            <MdOutlineLightMode
+              size="20px"
+              onClick={toggleDarkMode}
+              className="cursor-pointer"
+            />
+          ) : (
+            <MdOutlineDarkMode
+              size="20px"
+              onClick={toggleDarkMode}
+              className="cursor-pointer"
+            />
+          )}
+
           <div
             onClick={() => setIsOpen(!isOpen)}
             className="cursor-pointer md:hidden"
